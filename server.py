@@ -28,7 +28,7 @@ def sent_analyzer():
     joy = response['joy']
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
-    
+
     # Check if the dominant_emotion is None, indicating an error or invalid input
     if dominant_emotion is None:
         return "Invalid text! Please try again!"
@@ -39,7 +39,7 @@ def sent_analyzer():
         f"'joy': {joy} and 'sadness': {sadness}. "
         f"The dominant emotion is {dominant_emotion}."
     )
-    
+
 @app.route("/")
 def render_index_page():
     ''' This function initiates the rendering of the main application
