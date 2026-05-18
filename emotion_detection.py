@@ -23,9 +23,26 @@ def emotion_detector(text_to_analyse):
     myobj = { "raw_document": { "text": text_to_analyse } }
     # Set the headers required for the API request
     header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
+    # Send a POST request to the API with the text and headers
     response = requests.post(url, json = myobj, headers=header)
-    return response.text
-#    try:
+    # Parse the response from the API
+    formatted_response = json.loads(response.text)
+    # Create a new dictionary "set of emotions"
+    set_emotions =  formatted_response["emotionPredictions"][0]["emotion"]
+    # Create the final result
+    result = {
+            "anger": set_emotions["anger"],
+            "disgust": set_emotions["disgust"],
+            "fear": set_emotions["fear"],
+            "joy": set_emotions["joy"],
+            "sadness": set_emotions["sadness"]
+        }
+    # Add to result dominant_emotion and return full result
+    result["dominant_emotion"] = max(result, key=result.get)
+    return result
+
+
+    #    try:
 #        # Send a POST request to the API with the text and headers
 #        response = requests.post(url, json = myobj, headers=header, timeout=10)
 #    except requests.exceptions.Timeout:
