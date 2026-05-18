@@ -31,7 +31,7 @@ def sent_analyzer():
     
     # Check if the dominant_emotion is None, indicating an error or invalid input
     if dominant_emotion is None:
-        return "Invalid input! Try again."
+        return "Invalid text! Please try again!"
     # Return a formatted string with the all needed emotions and the dominant emotion
     return (
         f"For the given statement, the system response is "
